@@ -1,13 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: '*'
-    app.openshift.io/vcs-ref: ""
-    app.openshift.io/vcs-uri: https://github.com/brunobenchimol/php-http-vars
-    deployment.kubernetes.io/revision: "4"
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"php-http-vars:latest","namespace":"lab-bruno"},"fieldPath":"spec.template.spec.containers[?(@.name==\"php-http-vars\")].image","pause":"false"}]'
-    openshift.io/generated-by: OpenShiftWebConsole
   labels:
     app: php-http-vars
     app.kubernetes.io/component: php-http-vars

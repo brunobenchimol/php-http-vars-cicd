@@ -1,10 +1,6 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  annotations:
-    app.openshift.io/vcs-ref: ""
-    app.openshift.io/vcs-uri: https://github.com/brunobenchimol/php-http-vars
-    openshift.io/generated-by: OpenShiftWebConsole
   labels:
     app: php-http-vars
     app.kubernetes.io/component: php-http-vars

@@ -1,8 +1,6 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  annotations:
-    openshift.io/host.generated: "true"
   labels:
     app: php-http-vars
     app.kubernetes.io/component: php-http-vars
