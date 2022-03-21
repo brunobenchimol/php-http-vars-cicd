@@ -1,0 +1,13 @@
+source:
+  kind: Namespace
+  fieldpath: metadata.name
+targets:
+  - select:
+      kind: Deployment
+      name: php-http-vars
+    fieldPaths:
+    - spec.template.spec.containers.[name=php-http-vars].image
+    options:
+      delimiter: '/'
+      index: 1
+          
