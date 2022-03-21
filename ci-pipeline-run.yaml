@@ -1,8 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  generateName: php-http-vars-ci-
-  name: php-http-vars-ci
+  name: php-http-vars-ci-run
 spec:
   pipelineRef:
     name: php-http-vars-ci
