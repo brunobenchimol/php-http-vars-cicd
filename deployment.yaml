@@ -29,7 +29,7 @@ spec:
         deploymentconfig: php-http-vars
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars@sha256:efc7cfb872c9d1485b1ed07f73664e950c59453c57d02f6a59889f6e1e64b0c9
+      - image: image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars:latest
         imagePullPolicy: Always
         name: php-http-vars
         ports:
