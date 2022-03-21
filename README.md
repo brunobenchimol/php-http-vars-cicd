@@ -3,10 +3,15 @@ Example with Tekton + ArgoCD + OpenShift
 
 # Enviroment
 
-OpenShift 4.9
-OpenShift Pipelines 1.6.2
-OpenShift GitOps 1.4.3
+OpenShift 4.9   
+OpenShift Pipelines 1.6.2   
+OpenShift GitOps 1.4.3   
 
+# Pre-Reqs
+
+You must create namespace first and label it for ArgoCD be able to manage it.  
+`oc create namespace <name>`
+`oc label namespace <name> argocd.argoproj.io/managed-by=openshift-gitops` 
 
 # References
 
