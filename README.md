@@ -7,11 +7,10 @@ OpenShift 4.9
 OpenShift Pipelines 1.6.2   
 OpenShift GitOps 1.4.3   
 
-# Pre-Reqs
+# Notes
 
-You must create namespace first and label it for ArgoCD be able to manage it.   
-`oc create namespace <name>`   
-`oc label namespace <name> argocd.argoproj.io/managed-by=openshift-gitops`   
+Added namespace.yaml to work with replacements and create namespace, because argocd auto-create was not working.  
+ 
 
 # References
 

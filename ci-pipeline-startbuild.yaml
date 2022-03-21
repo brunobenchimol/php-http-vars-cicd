@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: php-http-vars-ci
+spec:
+  tasks:
+  - name: build-app
+    params:
+    - name: SCRIPT
+      value: oc start-build php-http-vars
+    - name: VERSION
+      value: latest
+    taskRef:
+      kind: ClusterTask
+      name: openshift-client

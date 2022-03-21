@@ -4,7 +4,11 @@
 
 resources:
   - namespace.yaml
-  - buildconfig.yaml
+  - ci-pvc.yaml
+  - ci-pipeline-s2i-build.yaml
+  # - ci-pipeline-startbuild.yaml
+  - ci-pipeline-run.yaml
+  # - buildconfig.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml

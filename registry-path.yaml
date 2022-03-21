@@ -10,4 +10,12 @@ targets:
     options:
       delimiter: '/'
       index: 1
-          
+  - select:
+      kind: Pipeline
+      name: php-http-vars-ci
+    fieldPaths:
+    - spec.tasks.[name=s2i-php].params.[name=IMAGE].value
+    options:
+      delimiter: '/'
+      index: 1
+                    

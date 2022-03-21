@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: php-http-vars-ci-
+  name: php-http-vars-ci
+spec:
+  pipelineRef:
+    name: php-http-vars-ci
+  serviceAccountName: pipeline
+  timeout: 1h0m0s
+  workspaces:
+    - name: shared_data
+      persistentVolumeClaim:
+        claimName: tekton-pvc
