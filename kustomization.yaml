@@ -4,12 +4,11 @@
 
 resources:
   - namespace.yaml
+  - tekton-ci/ci-pvc.yaml
+  - tekton-ci/ci-pipeline-s2i-build.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml
-  - ci/ci-pvc.yaml
-  - ci/ci-pipeline-s2i-build.yaml
-  
 
 replacements:
   - path: replacements.yaml
