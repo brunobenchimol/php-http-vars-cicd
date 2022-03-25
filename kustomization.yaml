@@ -24,6 +24,6 @@ configMapGenerator:
 secretGenerator:
 - name: php-http-vars-secret
   literals:
-  - SECRET_VAR=sample
+  - SECRET_VAR=verysecret
   options:
     disableNameSuffixHash: true
