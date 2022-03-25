@@ -6,6 +6,7 @@ resources:
   - namespace.yaml
   - tekton-ci/01-ci-pvc.yaml
   - tekton-ci/02-ci-pipeline-s2i-build.yaml
+  - imagestreamtag.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml

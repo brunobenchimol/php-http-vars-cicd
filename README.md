@@ -19,6 +19,7 @@ curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshi
 
 1. Added namespace.yaml to work with replacements and create namespace, because argocd auto-create does not work on OpenShift.  
 2. BuildConfig does not work properly because every namespace creates a different push/pull secret object.  
+3. OpenShift needs a `ImageStreamTag` object to be able to triggers deployment on image change.  
 
 # Issues
 

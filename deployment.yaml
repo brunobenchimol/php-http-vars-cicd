@@ -1,6 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"php-http-vars:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"php-http-vars\")].image"}]
   labels:
     app: php-http-vars
     app.kubernetes.io/component: php-http-vars
@@ -11,7 +14,7 @@ metadata:
   name: php-http-vars
 spec:
   progressDeadlineSeconds: 600
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
