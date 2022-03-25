@@ -11,7 +11,7 @@ metadata:
   name: php-http-vars
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -32,6 +32,11 @@ spec:
       - image: image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars:latest
         imagePullPolicy: Always
         name: php-http-vars
+        envFrom:
+        - configMapRef:
+            name: php-http-vars-configmap
+        - secretRef:
+            name: php-http-vars-secret
         ports:
         - containerPort: 8080
           protocol: TCP

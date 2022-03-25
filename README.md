@@ -12,7 +12,7 @@ OpenShift GitOps 1.4.3
 ~~~
 curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshift-example/main/install/01-argocd-app.yaml | oc apply -f -
 sleep 30
-curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshift-example/main/install/99-ci-pipeline-run.yaml | oc -n php-http-vars apply -f -
+curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshift-example/main/install/99-ci-pipeline-run.yaml | oc -n php-http-vars create -f -
 ~~~
 
 # Notes

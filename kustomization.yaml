@@ -12,3 +12,17 @@ resources:
 
 replacements:
   - path: replacements.yaml
+
+configMapGenerator:
+- name: php-http-vars-configmap
+  literals:
+  - CUSTOM_VAR=sample
+  options:
+    disableNameSuffixHash: true
+
+secretGenerator:
+- name: php-http-vars-secret
+  literals:
+  - SECRET_VAR=sample
+  options:
+    disableNameSuffixHash: true
