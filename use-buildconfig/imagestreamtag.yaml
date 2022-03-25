@@ -1,0 +1,14 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: php-http-vars
+  labels:
+    app: php-http-vars
+    app.kubernetes.io/component: php-http-vars
+    app.kubernetes.io/instance: php-http-vars
+    app.kubernetes.io/name: php-http-vars
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: 7.4-ubi8
+spec:
+  lookupPolicy:
+    local: false

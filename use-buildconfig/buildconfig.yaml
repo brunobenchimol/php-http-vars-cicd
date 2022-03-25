@@ -17,6 +17,8 @@ spec:
     to:
       kind: ImageStreamTag
       name: php-http-vars:latest
+    pushSecret:
+      name: builder-dockercfg-pqwf7
   runPolicy: Serial
   source:
     contextDir: /
@@ -26,9 +28,12 @@ spec:
   strategy:
     sourceStrategy:
       from:
-        kind: ImageStreamTag
-        name: php:7.4-ubi8
-        namespace: openshift
+        kind: DockerImage
+        name: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:696a1dc9240b68114cf5998412f116056ada4ffda2e9c9a6281e6eac7fccaf66
+      pullSecret:
+        name: builder-dockercfg-pqwf7
+    serviceAccount: builder
     type: Source
   triggers:
   - imageChange: {}

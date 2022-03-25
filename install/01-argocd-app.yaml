@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: php-http-vars
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: php-http-vars
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: .
+    repoURL: https://github.com/brunobenchimol/tekton-argocd-openshift-example
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
