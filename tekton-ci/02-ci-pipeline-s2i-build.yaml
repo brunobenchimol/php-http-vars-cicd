@@ -3,6 +3,16 @@ kind: Pipeline
 metadata:
   name: php-http-vars-ci
 spec:
+  finally:
+    - name: openshift-client
+      params:
+        - name: SCRIPT
+          value: oc rollout restart deployment/php-http-vars
+        - name: VERSION
+          value: latest
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
   tasks:
     - name: s2i-php
       params:

@@ -24,6 +24,8 @@ curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshi
 # Issues
 
 1. ArgoCD has a hard time to start pipeline on first sync. Hooks runs on every sync. Because of that first pipeline run must be done manually.  
+2. OpenShift always change image tag when using triggers and causes ArgoCD to go Out of Sync.   
+`Fix`: "Ask" Tekton CI to "restart deployment" to pick new image.  
 
 # TODO
 
