@@ -32,7 +32,7 @@ spec:
         deploymentconfig: php-http-vars
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars:latest
+      - image: image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars
         imagePullPolicy: Always
         name: php-http-vars
         envFrom:
