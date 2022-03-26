@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: el-event-listener-php-http-vars
+  name: svc-el-php-http-vars
   labels:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
