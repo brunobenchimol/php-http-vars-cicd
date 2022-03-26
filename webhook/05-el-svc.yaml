@@ -6,12 +6,6 @@ metadata:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
     eventlistener: event-listener-php-http-vars
-  ownerReferences:
-    - apiVersion: triggers.tekton.dev/v1beta1
-      kind: EventListener
-      name: event-listener-php-http-vars
-      controller: true
-      blockOwnerDeletion: true
 spec:
   ports:
     - name: http-listener
