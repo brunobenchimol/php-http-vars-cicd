@@ -9,7 +9,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: el-svc-php-http-vars
+    name: svc-el-php-http-vars
     weight: 100
   port:
     targetPort: 8080
