@@ -71,7 +71,7 @@ spec:
               mountPath: /etc/config-logging
           terminationMessagePolicy: File
           image: >-
-            registry.redhat.io/openshift-pipelines/pipelines-triggers-eventlistenersink-rhel8@sha256:latest
+            registry.redhat.io/openshift-pipelines/pipelines-triggers-eventlistenersink-rhel8:latest
           args:
             - '--el-name=event-listener-php-http-vars'
             - '--el-namespace=php-http-vars'
