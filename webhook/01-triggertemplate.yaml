@@ -1,0 +1,32 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: trigger-template-php-http-vars-ci
+spec:
+  params:
+    - name: git-revision
+    - name: git-commit-message
+    - name: git-repo-url
+    - name: git-repo-name
+    - name: content-type
+    - name: pusher-name
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        annotations: {}
+        generateName: php-http-vars-ci-
+        labels:
+          app.kubernetes.io/instance: php-http-vars
+          tekton.dev/pipeline: php-http-vars-ci
+        namespace: php-http-vars
+      spec:
+        params: []
+        pipelineRef:
+          name: php-http-vars-ci
+        resources: []
+        status: null
+        workspaces:
+          - name: shared_data
+            persistentVolumeClaim:
+              claimName: tekton-pvc

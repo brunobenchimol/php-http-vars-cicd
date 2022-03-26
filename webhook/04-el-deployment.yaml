@@ -1,0 +1,106 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: el-event-listener-php-http-vars
+  ownerReferences:
+    - apiVersion: triggers.tekton.dev/v1beta1
+      kind: EventListener
+      name: event-listener-php-http-vars
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: event-listener-php-http-vars
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/managed-by: EventListener
+      app.kubernetes.io/part-of: Triggers
+      eventlistener: event-listener-php-http-vars
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/managed-by: EventListener
+        app.kubernetes.io/part-of: Triggers
+        eventlistener: event-listener-php-http-vars
+    spec:
+      restartPolicy: Always
+      serviceAccountName: pipeline
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources: {}
+          readinessProbe:
+            httpGet:
+              path: /live
+              port: 8080
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 1
+          terminationMessagePath: /dev/termination-log
+          name: event-listener
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 8080
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 1
+          env:
+            - name: SYSTEM_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: CONFIG_OBSERVABILITY_NAME
+              value: config-observability-triggers
+            - name: METRICS_DOMAIN
+              value: tekton.dev/triggers
+            - name: METRICS_PROMETHEUS_PORT
+              value: '9000'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 9000
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config-logging
+              mountPath: /etc/config-logging
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/openshift-pipelines/pipelines-triggers-eventlistenersink-rhel8@sha256:latest
+          args:
+            - '--el-name=event-listener-php-http-vars'
+            - '--el-namespace=php-http-vars'
+            - '--port=8080'
+            - '--readtimeout=5'
+            - '--writetimeout=40'
+            - '--idletimeout=120'
+            - '--timeouthandler=30'
+            - '--is-multi-ns=false'
+            - '--payload-validation=true'
+            - '--tls-cert='
+            - '--tls-key='
+      serviceAccount: pipeline
+      volumes:
+        - name: config-logging
+          configMap:
+            name: config-logging-triggers
+            defaultMode: 420
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

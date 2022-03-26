@@ -1,0 +1,30 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: el-event-listener-php-http-vars
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: event-listener-php-http-vars
+  ownerReferences:
+    - apiVersion: triggers.tekton.dev/v1beta1
+      kind: EventListener
+      name: event-listener-php-http-vars
+      controller: true
+      blockOwnerDeletion: true
+spec:
+  ports:
+    - name: http-listener
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: http-metrics
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+  type: ClusterIP
+  sessionAffinity: None
+  selector:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: event-listener-php-http-vars

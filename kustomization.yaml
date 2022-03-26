@@ -10,6 +10,12 @@ resources:
   - deployment.yaml
   - service.yaml
   - route.yaml
+  - webhook/01-triggertemplate.yaml
+  - webhook/02-eventlistener.yaml
+  - webhook/03-config-logging-triggers.yaml
+  - webhook/04-el-deployment.yaml
+  - webhook/05-el-svc.yaml
+  - webhook/06-el-route.yaml
 
 replacements:
   - path: replacements.yaml
