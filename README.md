@@ -1,5 +1,5 @@
-# tekton-argocd-openshift-example
-Example with Tekton + ArgoCD + OpenShift
+# php-http-vars-cicd
+CI/CD Example with Tekton + ArgoCD + OpenShift
 
 # Enviroment
 
@@ -10,9 +10,9 @@ OpenShift GitOps 1.4.3
 # First Run
 
 ~~~
-curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshift-example/main/install/01-argocd-app.yaml | oc apply -f -
+curl -sSL https://raw.githubusercontent.com/brunobenchimol/php-http-vars-cicd/main/install/01-argocd-app.yaml | oc apply -f -
 sleep 30
-curl -sSL https://raw.githubusercontent.com/brunobenchimol/tekton-argocd-openshift-example/main/install/99-ci-pipeline-run.yaml | oc -n php-http-vars create -f -
+curl -sSL https://raw.githubusercontent.com/brunobenchimol/php-http-vars-cicd/main/install/99-ci-pipeline-run.yaml | oc -n php-http-vars create -f -
 ~~~
 
 # Triggering Pipeline
