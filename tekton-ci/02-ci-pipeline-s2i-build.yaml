@@ -3,16 +3,15 @@ kind: Pipeline
 metadata:
   name: php-http-vars-ci
 spec:
-  finally:
-    - name: openshift-client
-      params:
-        - name: SCRIPT
-          value: oc rollout restart deployment/php-http-vars
-        - name: VERSION
-          value: latest
-      taskRef:
-        kind: ClusterTask
-        name: openshift-client
+  params:
+   - name: GIT_URL
+     default: 'https://github.com/brunobenchimol/php-http-vars'
+   - name: GIT_REPO_NAME
+     default: 'php-http-vars'
+   - name: GIT_BRANCH
+     default: 'main' 
+   - name: GIT_PATH_CONTEXT
+     default: ''  
   tasks:
     - name: s2i-php
       params:
@@ -24,7 +23,7 @@ spec:
           value: 'true'
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/php-http-vars
+            image-registry.openshift-image-registry.svc:5000/MATCH_OPENSHIFT_NAMESPACE/$(params.GIT_REPO_NAME)
         - name: BUILDER_IMAGE
           value: >-
             registry.redhat.io/rhel8/buildah@sha256:e19cf23d5f1e0608f5a897f0a50448beb9f8387031cca49c7487ec71bd91c4d3
@@ -39,7 +38,11 @@ spec:
     - name: git-clone
       params:
         - name: url
-          value: 'https://github.com/brunobenchimol/php-http-vars'
+          value: "$(params.GIT_URL)"
+        - name: revision
+          value: "$(params.GIT_BRANCH)"
+        - name: subdirectory
+          value: "$(params.GIT_PATH_CONTEXT)"
         - name: submodules
           value: 'true'
         - name: depth
@@ -61,5 +64,15 @@ spec:
       workspaces:
         - name: output
           workspace: shared_data
+  finally:
+    - name: openshift-client
+      params:
+        - name: SCRIPT
+          value: oc rollout restart deployment/$(params.GIT_REPO_NAME)
+        - name: VERSION
+          value: latest
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
   workspaces:
     - name: shared_data

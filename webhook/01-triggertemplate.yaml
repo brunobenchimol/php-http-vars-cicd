@@ -21,7 +21,13 @@ spec:
           tekton.dev/pipeline: php-http-vars-ci
         namespace: php-http-vars
       spec:
-        params: []
+        params:
+          - name: GIT_URL
+            value: $(tt.params.git-repo-url)
+          - name: GIT_REPO_NAME
+            value: $(tt.params.git-repo-name)
+          - name: GIT_BRANCH
+            value: $(tt.params.git-revision)
         pipelineRef:
           name: php-http-vars-ci
         resources: []
